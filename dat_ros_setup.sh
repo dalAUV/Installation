@@ -38,6 +38,14 @@ rosdep update
 
 echo "Installing Catkin Tools"
 # Installing Catkin Tools
+sudo sh \
+    -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" \
+        > /etc/apt/sources.list.d/ros-latest.list'
+
+wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+
+sudo apt-get update 
+
 sudo apt-get install python3-catkin-tools -y
 
 sudo apt install ros-melodic-uuv-simulator -y
@@ -58,9 +66,9 @@ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 source ~/.bashrc
 
-cd ~/catkin_ws 
+cd ~/catkin_ws/src
 # Building Examples 
-catkin_init
+catkin_init_workspace
 
 catkin build node_examples
 
